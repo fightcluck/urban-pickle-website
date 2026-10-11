@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Pricing{% endblock %}
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+  <p class="font-label text-[11px] text-ball">Hourly rates</p>
+  <h1 class="mt-2 font-display text-4xl md:text-5xl text-cream">Our rates</h1>
+  <p class="mt-3 max-w-xl text-mist">
+    Opening hours {{ site.HOURS }}. Book covered or open courts on Courtsite.
+  </p>
+
+  <div class="mt-12 grid gap-12 lg:grid-cols-3">
+    {% for court in site.COURT_RATES %}
+    <div>
+      <h2 class="font-display text-2xl text-cream">{{ court.title }}</h2>
+
+      <p class="mt-5 font-label text-[10px] text-ball">{{ court.weekday_label }}</p>
+      <ul class="mt-3 space-y-3 list-none p-0">
+        {% for row in court.weekday %}
+        <li class="flex justify-between gap-4 border-b rate-rule pb-3">
+          <span class="text-sm text-mist">{{ row.hours }}</span>
+          <span class="text-cream font-semibold whitespace-nowrap">{{ row.price }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <p class="mt-6 font-label text-[10px] text-ball">{{ court.weekend_label }}</p>
+      <ul class="mt-3 space-y-3 list-none p-0">
+        {% for row in court.weekend %}
+        <li class="flex justify-between gap-4 border-b rate-rule pb-3">
+          <span class="text-sm text-mist">{{ row.hours }}</span>
+          <span class="text-cream font-semibold whitespace-nowrap">{{ row.price }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="mt-16 max-w-xl">
+    <h2 class="font-display text-2xl text-cream">Paddles &amp; balls</h2>
+    <p class="mt-2 text-sm text-mist">{{ site.EQUIPMENT_NOTE }}</p>
+    <ul class="mt-4 space-y-3 list-none p-0">
+      {% for row in site.EQUIPMENT %}
+      <li class="flex justify-between gap-4 border-b rate-rule pb-3">
+        <span>
+          <span class="text-cream">{{ row.label }}</span>
+          <span class="block text-sm text-mist">{{ row.detail }}</span>
+        </span>
+        <span class="text-cream font-semibold whitespace-nowrap">{{ row.price }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="mt-10 flex flex-wrap gap-3">
+    <a
+      href="{{ site.COURTSITE_BOOKING }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="rounded-sm bg-cream px-5 py-2.5 text-sm font-semibold text-deep hover:bg-ball"
+      >Check availability &amp; book</a
+    >
+    <a
+      href="{{ url_for('corporate.corporate') }}"
+      class="rounded-sm border border-cream/40 px-5 py-2.5 text-sm font-semibold text-cream hover:bg-cream/10"
+      >Corporate packages</a
+    >
+  </div>
+</section>
+{% endblock %}

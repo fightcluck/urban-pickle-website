@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Urban Pickle — covered and open pickleball courts on Jalan Tun Razak, Kuala Lumpur. Book on Courtsite."
+    />
+    <title>{% block title %}{{ site.BRAND_NAME }}{% endblock %} · Pickleball Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              forest: "#1a3a2a",
+              deep: "#0d1f16",
+              cream: "#f4efe4",
+              soft: "#e8e0d0",
+              mist: "#a8b5ab",
+              ball: "#d4e05c",
+            },
+            fontFamily: {
+              display: ['"Libre Baskerville"', "Georgia", "serif"],
+              sans: ['"Source Sans 3"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/site.css') }}"
+    />
+  </head>
+  <body class="min-h-screen flex flex-col bg-deep text-cream">
+    <header class="border-b border-cream/10 bg-deep/90 backdrop-blur sticky top-0 z-20">
+      <div
+        class="mx-auto max-w-6xl px-4 py-4 flex flex-wrap items-center justify-between gap-4"
+      >
+        <a
+          href="{{ url_for('main.home') }}"
+          class="font-display text-xl md:text-2xl tracking-wide text-cream"
+        >
+          {{ site.BRAND_NAME }}
+        </a>
+        <nav class="site-nav flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-mist">
+          {% set endpoint = request.endpoint %}
+          <a
+            href="{{ url_for('main.home') }}"
+            class="hover:text-cream"
+            {% if endpoint == 'main.home' %}aria-current="page"{% endif %}
+            >Home</a
+          >
+          <a
+            href="{{ url_for('main.pricing') }}"
+            class="hover:text-cream"
+            {% if endpoint == 'main.pricing' %}aria-current="page"{% endif %}
+            >Pricing</a
+          >
+          <a
+            href="{{ url_for('main.gallery') }}"
+            class="hover:text-cream"
+            {% if endpoint == 'main.gallery' %}aria-current="page"{% endif %}
+            >Gallery</a
+          >
+          <a
+            href="{{ url_for('corporate.corporate') }}"
+            class="hover:text-cream"
+            {% if endpoint == 'corporate.corporate' %}aria-current="page"{% endif %}
+            >Corporate</a
+          >
+          <a
+            href="{{ site.COURTSITE_BOOKING }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-sm bg-cream px-3 py-1.5 text-deep hover:bg-ball"
+            >Book</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="mx-auto max-w-6xl w-full px-4 pt-4 space-y-2">
+      {% for category, message in messages %}
+      <p
+        class="rounded-sm border border-cream/20 bg-forest px-3 py-2 text-sm text-cream"
+        role="status"
+      >
+        {{ message }}
+      </p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <main class="flex-1">{% block content %}{% endblock %}</main>
+
+    <footer class="border-t border-cream/10 mt-16 bg-forest/40">
+      <div class="mx-auto max-w-6xl px-4 py-10 grid gap-8 md:grid-cols-3 text-sm text-mist">
+        <div>
+          <p class="font-display text-lg text-cream">{{ site.BRAND_NAME }}</p>
+          <p class="font-label text-[10px] mt-2 text-mist">{{ site.TAGLINE }}</p>
+          <p class="mt-4 max-w-xs leading-relaxed">{{ site.ADDRESS }}</p>
+        </div>
+        <div>
+          <p class="font-label text-[10px] text-cream/80 mb-3">Visit</p>
+          <p>{{ site.HOURS }}</p>
+          <p class="mt-2">
+            <a href="tel:{{ site.PHONE }}" class="text-cream hover:text-ball"
+              >{{ site.PHONE_DISPLAY }}</a
+            >
+          </p>
+          <p class="mt-2">
+            <a
+              href="{{ site.INSTAGRAM }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-cream hover:text-ball"
+              >Instagram</a
+            >
+          </p>
+        </div>
+        <div>
+          <p class="font-label text-[10px] text-cream/80 mb-3">Book</p>
+          <a
+            href="{{ site.COURTSITE_BOOKING }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block rounded-sm bg-cream px-4 py-2 text-deep font-semibold hover:bg-ball"
+            >Courtsite booking</a
+          >
+          <p class="mt-4 text-xs">
+            {{ site.BUSINESS_NAME }} · {{ site.BUSINESS_NUMBER }}
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

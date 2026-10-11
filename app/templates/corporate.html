@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}Corporate Packages{% endblock %}
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+  <p class="font-label text-[11px] text-ball">Teams &amp; events</p>
+  <h1 class="mt-2 font-display text-4xl md:text-5xl text-cream">
+    Corporate packages
+  </h1>
+  <p class="mt-4 max-w-2xl text-mist leading-relaxed">
+    Host team outings, client sessions, or private play at {{ site.BRAND_NAME }}
+    covered and open courts in Taman U Thant, with food, drinks, and parking nearby.
+  </p>
+
+  <div class="mt-12 grid gap-12 md:grid-cols-2">
+    <div>
+      <h2 class="font-display text-2xl text-cream">What we offer</h2>
+      <ul class="mt-4 space-y-3 text-mist list-disc pl-5">
+        <li>Multi-court bookings for groups</li>
+        <li>Covered, open, and ball-machine court rates</li>
+        <li>Paddle rental and balls for sale over the counter</li>
+        <li>On-site amenities: changing rooms, showers, F&amp;B, parking</li>
+      </ul>
+      <h2 class="mt-10 font-display text-2xl text-cream">Venue policy</h2>
+      <div class="mt-4 space-y-6">
+        {% for section in site.POLICY_SECTIONS %}
+        <div>
+          <p class="font-semibold text-cream">{{ section.title }}</p>
+          <ul class="mt-2 space-y-2 text-sm text-mist list-disc pl-5">
+            {% for item in section.points %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="border border-cream/15 bg-forest/40 p-6 md:p-8">
+      <h2 class="font-display text-2xl text-cream">Contact us</h2>
+      <p class="mt-2 text-sm text-mist">
+        Reach the team by phone or WhatsApp — or book open slots on Courtsite.
+      </p>
+      <dl class="mt-6 space-y-4 text-sm">
+        <div>
+          <dt class="font-label text-[10px] text-ball">Phone</dt>
+          <dd class="mt-1">
+            <a href="tel:{{ site.PHONE }}" class="text-cream hover:text-ball"
+              >{{ site.PHONE_DISPLAY }}</a
+            >
+          </dd>
+        </div>
+        <div>
+          <dt class="font-label text-[10px] text-ball">WhatsApp</dt>
+          <dd class="mt-1">
+            <a
+              href="{{ site.WHATSAPP }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-cream hover:text-ball"
+              >Message {{ site.BRAND_NAME }}</a
+            >
+          </dd>
+        </div>
+        <div>
+          <dt class="font-label text-[10px] text-ball">Instagram</dt>
+          <dd class="mt-1">
+            <a
+              href="{{ site.INSTAGRAM }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-cream hover:text-ball"
+              >@urbanpicklemy</a
+            >
+          </dd>
+        </div>
+        <div>
+          <dt class="font-label text-[10px] text-ball">Address</dt>
+          <dd class="mt-1 text-soft leading-relaxed">{{ site.ADDRESS }}</dd>
+        </div>
+      </dl>
+
+      <form method="post" class="mt-8 space-y-4">
+        <div>
+          <label for="name" class="block text-sm text-cream">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            class="mt-1 w-full border border-cream/20 bg-deep px-3 py-2 text-cream"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm text-cream">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            class="mt-1 w-full border border-cream/20 bg-deep px-3 py-2 text-cream"
+          />
+        </div>
+        <div>
+          <label for="company" class="block text-sm text-cream">Company</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            class="mt-1 w-full border border-cream/20 bg-deep px-3 py-2 text-cream"
+          />
+        </div>
+        <div>
+          <label for="message" class="block text-sm text-cream">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            class="mt-1 w-full border border-cream/20 bg-deep px-3 py-2 text-cream"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="rounded-sm bg-cream px-5 py-2.5 text-sm font-semibold text-deep hover:bg-ball"
+        >
+          Send inquiry
+        </button>
+      </form>
+      <p class="mt-4 text-xs text-mist">
+        Form still flashes a stub confirmation — prefer WhatsApp for fast replies.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}
