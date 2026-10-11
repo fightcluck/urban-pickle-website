@@ -1,0 +1,44 @@
+:root {
+  --brand-forest: #1a3a2a;
+  --brand-deep: #0d1f16;
+  --brand-cream: #f4efe4;
+  --brand-cream-soft: #e8e0d0;
+  --brand-muted: #a8b5ab;
+  --brand-ball: #d4e05c;
+}
+
+body {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  color: var(--brand-cream);
+  background: var(--brand-deep);
+}
+
+.font-display {
+  font-family: "Libre Baskerville", Georgia, serif;
+}
+
+.font-label {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--brand-cream);
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+  text-decoration-thickness: 1px;
+}
+
+.hero-veil {
+  background: linear-gradient(
+    105deg,
+    rgba(13, 31, 22, 0.92) 0%,
+    rgba(13, 31, 22, 0.55) 48%,
+    rgba(13, 31, 22, 0.25) 100%
+  );
+}
+
+.rate-rule {
+  border-color: rgba(244, 239, 228, 0.15);
+}
